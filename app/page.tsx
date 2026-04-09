@@ -165,7 +165,7 @@ export default function Home() {
             }}
           >
             <Image
-              src="/Users/savannahdiggett/nomadically-sav/public/images/sailboat.jpg"
+              src="/images/sailboat.jpg"
               alt="Savannah travel photography"
               fill
               priority
