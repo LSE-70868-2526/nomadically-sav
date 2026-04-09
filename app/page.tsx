@@ -8,7 +8,7 @@ const portfolioPhotos = [
   { src: "/images/portfolio/01_santorni_hotel.jpg", alt: "Santorini hotel" },
   { src: "/images/portfolio/02_australian_coast.jpg", alt: "Australian coast" },
   { src: "/images/portfolio/02_resort_pool.jpg", alt: "Resort pool" },
-  { src: "/images/portfolio/03_ayia.jpg", alt: "Ayia Napa cliff" },
+  { src: "/images/portfolio/ayia.jpg", alt: "Ayia Napa cliff" },
   { src: "/images/portfolio/04_resort_bedroom.jpg", alt: "Resort bedroom" },
   { src: "/images/portfolio/05_airbnb_bathroom.jpg", alt: "Airbnb bathroom" },
   { src: "/images/portfolio/06_dining_room.jpg", alt: "Dining room" },
@@ -28,27 +28,27 @@ const portfolioPhotos = [
 
 const reels = [
   {
-    thumbnail: "/images/reels/reel_1.png",
+    thumbnail: "/images/reels/reel1.png",
     href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
     alt: "Instagram reel 1",
   },
   {
-    thumbnail: "/images/reels/reel_1.png",
+    thumbnail: "/images/reels/reel1.png",
     href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
     alt: "Instagram reel 2",
   },
   {
-    thumbnail: "/images/reels/reel_1.png",
+    thumbnail: "/images/reels/reel1.png",
     href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
     alt: "Instagram reel 3",
   },
   {
-    thumbnail: "/images/reels/reel_1.png",
+    thumbnail: "/images/reels/reel1.png",
     href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
     alt: "Instagram reel 4",
   },
   {
-    thumbnail: "/images/reels/reel_1.png",
+    thumbnail: "/images/reels/reel1.png",
     href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
     alt: "Instagram reel 5",
   },
