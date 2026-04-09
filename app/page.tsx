@@ -169,7 +169,7 @@ export default function Home() {
               alt="Savannah travel photography"
               fill
               priority
-              style={{ objectFit: "cover", objectPosition: "center center" }}
+              style={{ objectFit: "cover", objectPosition: "right center" }}
             />
           </div>
         </section>
