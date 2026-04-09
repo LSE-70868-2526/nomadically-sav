@@ -4,221 +4,359 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
+const portfolioPhotos = [
+  { src: "/images/portfolio/01_santorni_hotel.jpg", alt: "Santorini hotel" },
+  { src: "/images/portfolio/02_australian_coast.jpg", alt: "Australian coast" },
+  { src: "/images/portfolio/02_resort_pool.jpg", alt: "Resort pool" },
+  { src: "/images/portfolio/03_ayia.jpg", alt: "Ayia Napa cliff" },
+  { src: "/images/portfolio/04_resort_bedroom.jpg", alt: "Resort bedroom" },
+  { src: "/images/portfolio/05_airbnb_bathroom.jpg", alt: "Airbnb bathroom" },
+  { src: "/images/portfolio/06_dining_room.jpg", alt: "Dining room" },
+  { src: "/images/portfolio/07_nusa_penida.jpg", alt: "Nusa Penida" },
+  { src: "/images/portfolio/08_red_beach_restaurant.jpg", alt: "Red beach restaurant" },
+  { src: "/images/portfolio/09_red_beach_rocks.jpg", alt: "Red beach rocks" },
+  { src: "/images/portfolio/10_bali_resort_pool.jpg", alt: "Bali resort pool" },
+  { src: "/images/portfolio/11_beach_chairs.jpg", alt: "Beach chairs" },
+  { src: "/images/portfolio/12_hotel_reflection_pool.jpg", alt: "Hotel reflection pool" },
+  { src: "/images/portfolio/13_airbnb_riverside.jpg", alt: "Airbnb riverside" },
+  { src: "/images/portfolio/14_hotel_breakfast.jpg", alt: "Hotel breakfast" },
+  { src: "/images/portfolio/15_lisbon_pink_street.jpg", alt: "Lisbon pink street" },
+  { src: "/images/portfolio/16_lifestyle_beach.jpg", alt: "Lifestyle beach" },
+  { src: "/images/portfolio/17_lifeguard.jpg", alt: "Lifeguard" },
+  { src: "/images/portfolio/18_whitsundays.jpg", alt: "Whitsundays" },
+];
+
+const reels = [
+  {
+    thumbnail: "/images/reels/reel_1.png",
+    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    alt: "Instagram reel 1",
+  },
+  {
+    thumbnail: "/images/reels/reel_1.png",
+    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    alt: "Instagram reel 2",
+  },
+  {
+    thumbnail: "/images/reels/reel_1.png",
+    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    alt: "Instagram reel 3",
+  },
+  {
+    thumbnail: "/images/reels/reel_1.png",
+    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    alt: "Instagram reel 4",
+  },
+  {
+    thumbnail: "/images/reels/reel_1.png",
+    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    alt: "Instagram reel 5",
+  },
+];
+
 export default function Home() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  setStatus("sending");
+    e.preventDefault();
+    setStatus("sending");
 
-  const form = e.currentTarget;
-  const formData = new FormData(form);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-  const payload = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message"),
-  };
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
 
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    const data = await res.json();
-    console.log("API response:", data);
+      const data = await res.json();
 
-    if (!res.ok) {
-      throw new Error(data.error || "Failed to send");
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send");
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
     }
-
-    setStatus("success");
-    form.reset();
-  } catch (error) {
-    console.error("Form submit error:", error);
-    setStatus("error");
   }
-}
 
   return (
     <main
       style={{
         backgroundColor: "#fcfdfc",
         color: "#18313a",
+        fontFamily: "Arial, Helvetica, sans-serif",
         minHeight: "100vh",
       }}
     >
       <section
         style={{
-          maxWidth: "1120px",
-          margin: "0 auto",
-          padding: "32px 24px 90px",
+          padding: "56px 70px 40px",
         }}
       >
-        <header
+        <div
           style={{
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            gap: "8px",
-            marginBottom: "42px",
+            justifyContent: "space-between",
+            gap: "24px",
+            flexWrap: "wrap",
           }}
         >
-          <Link href="/" style={{ textDecoration: "none" }}>
+          <Link href="/" style={{ textDecoration: "none", display: "inline-block" }}>
             <Image
               src="/images/logo.png"
-              alt="Nomadically Sav logo"
-              width={480}
-              height={150}
-              style={{ objectFit: "contain" }}
+              alt="Nomadically Sav"
+              width={500}
+              height={95}
               priority
+              style={{
+                width: "auto",
+                height: "74px",
+                display: "block",
+                objectFit: "contain",
+              }}
             />
           </Link>
 
           <nav
             style={{
               display: "flex",
-              gap: "22px",
-              justifyContent: "center",
+              gap: "24px",
               flexWrap: "wrap",
+              alignItems: "center",
             }}
           >
-            <Link href="/" style={navLink}>
-              About
-            </Link>
-            <Link href="/portfolio" style={navLink}>
-              Portfolio
-            </Link>
-            <a href="#contact" style={navLink}>
-              Contact
+            <a
+              href="#about"
+              style={{
+                textDecoration: "none",
+                color: "#18313a",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+              }}
+            >
+              ABOUT
             </a>
+            <a
+              href="#portfolio-preview"
+              style={{
+                textDecoration: "none",
+                color: "#18313a",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+              }}
+            >
+              PORTFOLIO
+            </a>
+            <a
+              href="#reels"
+              style={{
+                textDecoration: "none",
+                color: "#18313a",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+              }}
+            >
+              REELS
+            </a>
+            <a
+              href="#contact"
+              style={{
+                textDecoration: "none",
+                color: "#18313a",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+              }}
+            >
+              CONTACT
+            </a>
+            <Link
+              href="/portfolio"
+              style={{
+                textDecoration: "none",
+                color: "#18313a",
+                letterSpacing: "0.1em",
+                fontSize: "13px",
+                border: "1px solid #18313a",
+                padding: "12px 18px",
+              }}
+            >
+              VIEW FULL PORTFOLIO
+            </Link>
           </nav>
-        </header>
-
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.02fr 0.98fr",
-            gap: "34px",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <p style={eyebrow}>Travel Photographer • Visual Storytelling</p>
-
-            <h1
-              style={{
-                fontSize: "clamp(2.6rem, 6vw, 5.1rem)",
-                lineHeight: 1,
-                margin: "0 0 20px 0",
-                fontWeight: 600,
-              }}
-            >
-              Visual storytelling
-              <br />
-              for hotels and
-              <br />
-              travel brands.
-            </h1>
-
-            <p
-              style={{
-                maxWidth: "560px",
-                fontSize: "1.03rem",
-                lineHeight: 1.9,
-                color: "#5b6f77",
-                marginBottom: "28px",
-              }}
-            >
-              I’m Savannah, a travel photographer creating clean, thoughtful imagery
-              for boutique hotels, destinations, and travel-focused brands. My work
-              blends natural light, place-driven storytelling, and a minimalist coastal aesthetic.
-            </p>
-
-            <div
-              style={{
-                display: "flex",
-                gap: "12px",
-                flexWrap: "wrap",
-              }}
-            >
-              <Link href="/portfolio" style={primaryButton}>
-                View Portfolio
-              </Link>
-              <a href="#contact" style={secondaryButton}>
-                Get in Touch
-              </a>
-            </div>
-          </div>
-
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "720px",
-              borderRadius: "6px",
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              src="/images/sailboat.jpg"
-              alt="Savannah travel photography"
-              fill
-              priority
-              style={{ objectFit: "cover", objectPosition: "right center" }}
-            />
-          </div>
-        </section>
+        </div>
       </section>
 
       <section
         style={{
-          maxWidth: "1120px",
-          margin: "0 auto",
-          padding: "0 24px 90px",
+          padding: "30px 70px 90px",
         }}
       >
         <div
           style={{
-            borderTop: "1px solid #dbe7e5",
-            paddingTop: "55px",
-            display: "grid",
-            gridTemplateColumns: "0.9fr 1.1fr",
-            gap: "40px",
+            maxWidth: "1180px",
           }}
         >
-          <p style={sectionLabel}>About</p>
+          <p
+            style={{
+              fontSize: "14px",
+              letterSpacing: "0.18em",
+              color: "#5e8b90",
+              marginBottom: "22px",
+              fontWeight: 700,
+            }}
+          >
+            TRAVEL PHOTOGRAPHY + CONTENT CREATION
+          </p>
 
+          <h1
+            style={{
+              fontSize: "clamp(44px, 7vw, 88px)",
+              lineHeight: 1.06,
+              fontWeight: 400,
+              letterSpacing: "-0.03em",
+              maxWidth: "980px",
+              margin: "0 0 22px 0",
+            }}
+          >
+            Elevated visual storytelling for boutique hotels, destinations, and travel brands.
+          </h1>
+
+          <p
+            style={{
+              fontSize: "22px",
+              lineHeight: 1.7,
+              color: "#667b82",
+              maxWidth: "760px",
+              margin: 0,
+            }}
+          >
+            I create calm, polished imagery that helps hospitality and travel brands feel memorable,
+            aspirational, and genuinely lived in.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="portfolio-preview"
+        style={{
+          padding: "0 70px 100px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+            gap: "18px",
+          }}
+        >
+          {portfolioPhotos.slice(0, 4).map((photo, index) => (
+            <div
+              key={index}
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "4 / 5",
+                overflow: "hidden",
+                backgroundColor: "#e9efed",
+              }}
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="about"
+        style={{
+          padding: "95px 70px 90px",
+          borderTop: "1px solid #d7dfdd",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(300px, 420px) minmax(420px, 1fr)",
+            gap: "64px",
+            alignItems: "start",
+          }}
+        >
           <div>
             <p
               style={{
-                margin: "0 0 18px 0",
-                fontSize: "1.35rem",
-                lineHeight: 1.75,
-                color: "#1f3a43",
-                fontWeight: 400,
+                fontSize: "14px",
+                letterSpacing: "0.18em",
+                color: "#5e8b90",
+                marginBottom: "28px",
+                fontWeight: 700,
               }}
             >
-              My work focuses on hotels, destinations, and travel experiences that want
-              imagery to feel elevated, calm, and genuine.
+              ABOUT
             </p>
+
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "4 / 5",
+                overflow: "hidden",
+                backgroundColor: "#e8efed",
+              }}
+            >
+              <Image
+                src="/images/about-portrait.jpg"
+                alt="Portrait of Savannah"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </div>
+
+          <div style={{ maxWidth: "760px" }}>
+            <h2
+              style={{
+                fontSize: "clamp(34px, 4vw, 56px)",
+                lineHeight: 1.18,
+                fontWeight: 400,
+                margin: "42px 0 28px 0",
+                color: "#18313a",
+              }}
+            >
+              My work focuses on hotels, destinations, and travel experiences that want imagery to
+              feel elevated, calm, and genuine.
+            </h2>
 
             <p
               style={{
+                fontSize: "20px",
+                lineHeight: 1.9,
+                color: "#667b82",
                 margin: 0,
-                color: "#5b6f77",
-                lineHeight: 1.95,
-                fontSize: "1rem",
-                maxWidth: "680px",
               }}
             >
-              I’m drawn to coastal settings, boutique stays, thoughtful interiors, and the
-              small visual details that make a place feel memorable. My goal is to create content
-              that not only looks beautiful, but also helps brands connect with the kind of traveler
+              I’m drawn to coastal settings, boutique stays, thoughtful interiors, and the small
+              visual details that make a place feel memorable. My goal is to create content that
+              not only looks beautiful, but also helps brands connect with the kind of traveler
               they want to reach.
             </p>
           </div>
@@ -228,92 +366,338 @@ export default function Home() {
       <section
         id="contact"
         style={{
-          maxWidth: "1120px",
-          margin: "0 auto",
-          padding: "0 24px 110px",
+          padding: "90px 70px 100px",
+          borderTop: "1px solid #d7dfdd",
         }}
       >
         <div
           style={{
-            borderTop: "1px solid #dbe7e5",
-            paddingTop: "55px",
             display: "grid",
-            gridTemplateColumns: "0.9fr 1.1fr",
-            gap: "40px",
+            gridTemplateColumns: "180px minmax(520px, 1fr) minmax(260px, 360px)",
+            gap: "48px",
+            alignItems: "start",
           }}
         >
-          <p style={sectionLabel}>Contact</p>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "40px",
-              alignItems: "start",
-            }}
-          >
-            <form
-              onSubmit={handleSubmit}
+          <div>
+            <p
               style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "14px",
+                fontSize: "14px",
+                letterSpacing: "0.18em",
+                color: "#5e8b90",
+                fontWeight: 700,
+                margin: 0,
               }}
             >
-              <input name="name" type="text" placeholder="Name" required style={inputStyle} />
-              <input name="email" type="email" placeholder="Email" required style={inputStyle} />
-              <textarea
-                name="message"
-                placeholder="Ask me anything!"
-                rows={6}
+              CONTACT
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "18px",
+                marginBottom: "18px",
+              }}
+            >
+              <input
+                name="name"
+                type="text"
+                placeholder="Name"
                 required
                 style={inputStyle}
               />
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                required
+                style={inputStyle}
+              />
+            </div>
 
-              <button type="submit" style={primaryButton} disabled={status === "sending"}>
-                {status === "sending" ? "Sending..." : "Send Inquiry"}
-              </button>
+            <textarea
+              name="message"
+              placeholder="Ask me anything!"
+              required
+              style={{
+                ...inputStyle,
+                minHeight: "220px",
+                resize: "vertical",
+                marginBottom: "18px",
+              }}
+            />
 
-              {status === "success" && (
-                <p style={{ margin: 0, color: "#2f6f76", fontSize: "0.92rem" }}>
-                  Your message was sent successfully.
-                </p>
-              )}
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              style={{
+                backgroundColor: "#337c82",
+                color: "#ffffff",
+                border: "none",
+                padding: "20px 28px",
+                fontSize: "14px",
+                letterSpacing: "0.16em",
+                cursor: "pointer",
+                width: "100%",
+                fontWeight: 700,
+              }}
+            >
+              {status === "sending" ? "SENDING..." : "SEND INQUIRY"}
+            </button>
 
-              {status === "error" && (
-                <p style={{ margin: 0, color: "#9b3d3d", fontSize: "0.92rem" }}>
-                  Something went wrong. Please try again.
-                </p>
-              )}
-            </form>
-
-            <div>
-              <h2
-                style={{
-                  margin: "0 0 14px 0",
-                  fontSize: "2rem",
-                  fontWeight: 600,
-                }}
-              >
-                Let’s work together
-              </h2>
-
+            {status === "success" && (
               <p
                 style={{
-                  color: "#5b6f77",
-                  lineHeight: 1.9,
-                  marginBottom: "20px",
-                  maxWidth: "420px",
+                  marginTop: "16px",
+                  color: "#337c82",
+                  fontSize: "15px",
+                  letterSpacing: "0.03em",
                 }}
               >
-                Available for boutique hotel collaborations, destination campaigns,
-                and travel content partnerships.
+                Your message was sent to Savannah!
               </p>
+            )}
 
-              <a href="mailto:sav@nomadicallysav.com" style={emailLink}>
-                sav@nomadicallysav.com
+            {status === "error" && (
+              <p
+                style={{
+                  marginTop: "16px",
+                  color: "#a04d4d",
+                  fontSize: "15px",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                Something went wrong. Please try again.
+              </p>
+            )}
+          </form>
+
+          <div style={{ paddingTop: "8px" }}>
+            <h3
+              style={{
+                fontSize: "clamp(34px, 4vw, 58px)",
+                lineHeight: 1.08,
+                margin: "0 0 24px 0",
+                fontWeight: 600,
+              }}
+            >
+              Let’s work together!
+            </h3>
+
+            <p
+              style={{
+                fontSize: "18px",
+                lineHeight: 1.9,
+                color: "#667b82",
+                margin: "0 0 28px 0",
+              }}
+            >
+              Available for collaborations, destination campaigns, and travel
+              content partnerships.
+            </p>
+
+            <a
+              href="mailto:sav@nomadicallysav.com"
+              style={{
+                color: "#337c82",
+                textDecoration: "none",
+                fontSize: "18px",
+                fontWeight: 700,
+              }}
+            >
+              sav@nomadicallysav.com
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="reels"
+        style={{
+          padding: "0 70px 100px",
+        }}
+      >
+        <div
+          style={{
+            border: "1px solid #d9d9d9",
+            padding: "18px",
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
+              gap: "0",
+            }}
+          >
+            {reels.map((reel, index) => (
+              <a
+                key={index}
+                href={reel.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  position: "relative",
+                  display: "block",
+                  aspectRatio: "9 / 16",
+                  overflow: "hidden",
+                  backgroundColor: "#e8efed",
+                  textDecoration: "none",
+                }}
+              >
+                <Image
+                  src={reel.thumbnail}
+                  alt={reel.alt}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background:
+                      "linear-gradient(to top, rgba(0,0,0,0.08), rgba(0,0,0,0.03))",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "78px",
+                      height: "78px",
+                      borderRadius: "999px",
+                      backgroundColor: "rgba(255,255,255,0.88)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      boxShadow: "0 8px 20px rgba(0,0,0,0.12)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: "15px solid transparent",
+                        borderBottom: "15px solid transparent",
+                        borderLeft: "22px solid #18313a",
+                        marginLeft: "6px",
+                      }}
+                    />
+                  </div>
+                </div>
               </a>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        style={{
+          padding: "0 70px 90px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.2fr 1fr 1fr",
+            gap: "0",
+            borderTop: "1px solid #d7dfdd",
+            borderBottom: "1px solid #d7dfdd",
+          }}
+        >
+          <div
+            style={{
+              padding: "38px 28px",
+              borderRight: "1px solid #d7dfdd",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "13px",
+                letterSpacing: "0.18em",
+                color: "#9aa8ac",
+                marginBottom: "18px",
+                fontWeight: 700,
+              }}
+            >
+              EMAIL
+            </p>
+            <a
+              href="mailto:sav@nomadicallysav.com"
+              style={{
+                color: "#18313a",
+                textDecoration: "none",
+                fontSize: "28px",
+                lineHeight: 1.4,
+              }}
+            >
+              sav@nomadicallysav.com
+            </a>
+          </div>
+
+          <div
+            style={{
+              padding: "38px 28px",
+              borderRight: "1px solid #d7dfdd",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "13px",
+                letterSpacing: "0.18em",
+                color: "#9aa8ac",
+                marginBottom: "18px",
+                fontWeight: 700,
+              }}
+            >
+              INSTAGRAM
+            </p>
+            <a
+              href="https://www.instagram.com/nomadicallysav/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#18313a",
+                textDecoration: "none",
+                fontSize: "28px",
+                lineHeight: 1.4,
+              }}
+            >
+              @nomadicallysav
+            </a>
+          </div>
+
+          <div
+            style={{
+              padding: "38px 28px",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "13px",
+                letterSpacing: "0.18em",
+                color: "#9aa8ac",
+                marginBottom: "18px",
+                fontWeight: 700,
+              }}
+            >
+              INQUIRIES
+            </p>
+            <p
+              style={{
+                color: "#667b82",
+                fontSize: "18px",
+                lineHeight: 1.8,
+                margin: 0,
+              }}
+            >
+              Boutique hotel stays, destination campaigns, brand partnerships, and travel content
+              creation.
+            </p>
           </div>
         </div>
       </section>
@@ -321,76 +705,13 @@ export default function Home() {
   );
 }
 
-const eyebrow = {
-  margin: "0 0 18px 0",
-  color: "#5b8f91",
-  fontSize: "0.82rem",
-  letterSpacing: "0.16em",
-  textTransform: "uppercase" as const,
-  fontWeight: 600,
-};
-
-const sectionLabel = {
-  color: "#5b8f91",
-  fontSize: "0.82rem",
-  letterSpacing: "0.16em",
-  textTransform: "uppercase" as const,
-  margin: 0,
-  fontWeight: 600,
-};
-
-const navLink = {
-  textDecoration: "none",
-  color: "#48636d",
-  letterSpacing: "0.12em",
-  textTransform: "uppercase" as const,
-  fontSize: "0.78rem",
-  fontWeight: 600,
-};
-
-const primaryButton = {
-  display: "inline-block",
-  textDecoration: "none",
-  color: "#ffffff",
-  backgroundColor: "#2f6f76",
-  padding: "14px 22px",
-  borderRadius: "0px",
-  border: "1px solid #2f6f76",
-  fontWeight: 600,
-  letterSpacing: "0.12em",
-  textTransform: "uppercase" as const,
-  fontSize: "0.76rem",
-  cursor: "pointer",
-};
-
-const secondaryButton = {
-  display: "inline-block",
-  textDecoration: "none",
-  color: "#2f6f76",
-  backgroundColor: "transparent",
-  border: "1px solid #b9d3d0",
-  padding: "14px 22px",
-  borderRadius: "0px",
-  fontWeight: 600,
-  letterSpacing: "0.12em",
-  textTransform: "uppercase" as const,
-  fontSize: "0.76rem",
-};
-
-const inputStyle = {
-  padding: "14px 16px",
-  border: "1px solid #dbe7e5",
-  borderRadius: "0px",
-  fontSize: "0.95rem",
-  outline: "none",
-  fontFamily: "inherit",
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "22px 20px",
+  fontSize: "16px",
+  border: "1px solid #d6dddd",
+  backgroundColor: "#fcfdfc",
   color: "#18313a",
-  backgroundColor: "#ffffff",
-};
-
-const emailLink = {
-  textDecoration: "none",
-  color: "#2f6f76",
-  fontWeight: 600,
-  fontSize: "1rem",
+  outline: "none",
+  boxSizing: "border-box",
 };
