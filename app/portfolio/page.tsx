@@ -5,7 +5,7 @@ const photos = [
   { src: "/images/portfolio/01_santorni_hotel.jpg", alt: "Portfolio image 1" },
   { src: "/images/portfolio/02_australian_coast.jpg", alt: "Portfolio image 2" },
   { src: "/images/portfolio/02_resort_pool.jpg", alt: "Portfolio image 3" },
-  { src: "/images/portfolio/03_ayia_napa_cliff.jpg", alt: "Portfolio image 4" },
+  { src: "/images/portfolio/03_ayia_napa_cliff.JPG", alt: "Portfolio image 4" },
   { src: "/images/portfolio/04_resort_bedroom.jpg", alt: "Portfolio image 5" },
   { src: "/images/portfolio/05_airbnb_bathroom.jpg", alt: "Portfolio image 6" },
   { src: "/images/portfolio/06_dining_room.jpg", alt: "Portfolio image 7" },
@@ -18,7 +18,7 @@ const photos = [
   { src: "/images/portfolio/13_airbnb_riverside.jpg", alt: "Portfolio image 14" },
   { src: "/images/portfolio/14_hotel_breakfast.jpg", alt: "Portfolio image 15" },
   { src: "/images/portfolio/15_lisbon_pink_street.jpg", alt: "Portfolio image 16" },
-  { src: "/images/portfolio/16_lifestyle_beach.jpg", alt: "Portfolio image 17" },
+  { src: "/images/portfolio/16_lifestyle_beach.JPG", alt: "Portfolio image 17" },
   { src: "/images/portfolio/17_beach_hike.jpg", alt: "Portfolio image 18" },
   { src: "/images/portfolio/18_whitsundays.jpg", alt: "Portfolio image 19" },
 ];
@@ -33,138 +33,76 @@ export default function PortfolioPage() {
         minHeight: "100vh",
       }}
     >
-      <section
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "40px 24px 90px",
-        }}
-      >
-        <header
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "18px",
-            marginBottom: "60px",
-          }}
-        >
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <Image
-              src="/images/logo.png"
-              alt="Nomadically Sav logo"
-              width={320}
-              height={100}
-              style={{ objectFit: "contain" }}
-              priority
-            />
-          </Link>
-
-          <nav
-            style={{
-              display: "flex",
-              gap: "28px",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <Link href="/" style={navLink}>
-              About
-            </Link>
-            <Link href="/portfolio" style={navLink}>
-              Portfolio
-            </Link>
-            <Link href="/#contact" style={navLink}>
-              Contact
-            </Link>
-          </nav>
-        </header>
-
+      <section style={{ padding: "60px 24px" }}>
         <div
           style={{
-            textAlign: "center",
-            marginBottom: "42px",
+            maxWidth: "1200px",
+            margin: "0 auto",
           }}
         >
-          <p
-            style={{
-              color: "#5b8f91",
-              fontSize: "0.82rem",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              margin: "0 0 12px 0",
-            }}
-          >
-            Portfolio
-          </p>
+          <div style={{ marginBottom: "32px" }}>
+            <Link
+              href="/"
+              style={{
+                textDecoration: "none",
+                color: "#18313a",
+                fontSize: "14px",
+                letterSpacing: "0.08em",
+              }}
+            >
+              ← Back Home
+            </Link>
+          </div>
 
           <h1
             style={{
-              margin: "0 0 16px 0",
-              fontSize: "clamp(2.2rem, 5vw, 4rem)",
-              fontWeight: 500,
+              fontSize: "42px",
+              fontWeight: 400,
+              marginBottom: "12px",
             }}
           >
-            Selected Work
+            Portfolio
           </h1>
 
           <p
             style={{
+              fontSize: "16px",
+              lineHeight: 1.7,
               maxWidth: "700px",
-              margin: "0 auto",
-              color: "#5b6f77",
-              lineHeight: 1.8,
+              marginBottom: "40px",
             }}
           >
-            A collection of travel, hospitality, and destination imagery with a
-            focus on natural light, atmosphere, and visual storytelling.
+            A collection of travel, hospitality, and lifestyle imagery.
           </p>
-        </div>
 
-        <div
-          style={{
-            columnCount: 3,
-            columnGap: "20px",
-          }}
-        >
-          {photos.map((photo, index) => (
-            <div
-              key={index}
-              style={{
-                breakInside: "avoid",
-                marginBottom: "20px",
-                borderRadius: "22px",
-                overflow: "hidden",
-                backgroundColor: "#eef4f3",
-              }}
-            >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+            }}
+          >
+            {photos.map((photo, index) => (
               <div
+                key={index}
                 style={{
                   position: "relative",
                   width: "100%",
-                  aspectRatio: index === 1 || index === 7 ? "3 / 2" : "4 / 5",
+                  aspectRatio: "4 / 5",
+                  overflow: "hidden",
                 }}
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  sizes="(max-width: 900px) 100vw, 33vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </main>
   );
 }
-
-const navLink = {
-  textDecoration: "none",
-  color: "#48636d",
-  letterSpacing: "0.08em",
-  textTransform: "uppercase" as const,
-  fontSize: "0.8rem",
-};
