@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState, CSSProperties } from "react";
+import { FormEvent, useRef, useState, CSSProperties } from "react";
 
 const portfolioPhotos = [
   { src: "/images/portfolio/01_santorni_hotel.jpg", alt: "Santorini hotel" },
@@ -56,6 +56,14 @@ const reels = [
 
 export default function Home() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const introRef = useRef<HTMLElement | null>(null);
+
+  function scrollToIntro() {
+    introRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -104,7 +112,86 @@ export default function Home() {
     >
       <section
         style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px 24px 56px",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "980px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            src="/images/logo.png"
+            alt="Nomadically Sav"
+            width={1100}
+            height={260}
+            priority
+            style={{
+              width: "min(92vw, 760px)",
+              height: "auto",
+              display: "block",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+
+        <button
+          onClick={scrollToIntro}
+          aria-label="Scroll down"
+          style={{
+            position: "absolute",
+            bottom: "42px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "10px",
+            color: "#18313a",
+            padding: 0,
+          }}
+        >
+          <span
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.22em",
+              opacity: 0.7,
+            }}
+          >
+            ENTER
+          </span>
+
+          <span
+            style={{
+              display: "inline-block",
+              fontSize: "42px",
+              lineHeight: 1,
+              animation: "floatDown 1.8s ease-in-out infinite",
+            }}
+          >
+            ↓
+          </span>
+        </button>
+      </section>
+
+      <section
+        ref={introRef}
+        style={{
           padding: "56px 70px 40px",
+          borderTop: "1px solid #d7dfdd",
         }}
       >
         <div
@@ -122,10 +209,9 @@ export default function Home() {
               alt="Nomadically Sav"
               width={500}
               height={95}
-              priority
               style={{
                 width: "auto",
-                height: "74px",
+                height: "58px",
                 display: "block",
                 objectFit: "contain",
               }}
@@ -140,57 +226,22 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            <a
-              href="#about"
-              style={{
-                textDecoration: "none",
-                color: "#18313a",
-                letterSpacing: "0.1em",
-                fontSize: "13px",
-              }}
-            >
+            <a href="#about" style={navLinkStyle}>
               ABOUT
             </a>
-            <a
-              href="#portfolio-preview"
-              style={{
-                textDecoration: "none",
-                color: "#18313a",
-                letterSpacing: "0.1em",
-                fontSize: "13px",
-              }}
-            >
+            <a href="#portfolio-preview" style={navLinkStyle}>
               PORTFOLIO
             </a>
-            <a
-              href="#reels"
-              style={{
-                textDecoration: "none",
-                color: "#18313a",
-                letterSpacing: "0.1em",
-                fontSize: "13px",
-              }}
-            >
+            <a href="#reels" style={navLinkStyle}>
               REELS
             </a>
-            <a
-              href="#contact"
-              style={{
-                textDecoration: "none",
-                color: "#18313a",
-                letterSpacing: "0.1em",
-                fontSize: "13px",
-              }}
-            >
+            <a href="#contact" style={navLinkStyle}>
               CONTACT
             </a>
             <Link
               href="/portfolio"
               style={{
-                textDecoration: "none",
-                color: "#18313a",
-                letterSpacing: "0.1em",
-                fontSize: "13px",
+                ...navLinkStyle,
                 border: "1px solid #18313a",
                 padding: "12px 18px",
               }}
@@ -230,7 +281,7 @@ export default function Home() {
               fontWeight: 400,
               letterSpacing: "-0.03em",
               maxWidth: "980px",
-              margin: "0 0 22px 0",
+              margin: "0 0 10px 0",
             }}
           >
             Hi, I’m Savannah.
@@ -242,7 +293,7 @@ export default function Home() {
               lineHeight: 1.4,
               fontStyle: "italic",
               letterSpacing: "0.04em",
-              margin: "6px 0 0 2px",
+              margin: "0 0 22px 2px",
               opacity: 0.75,
             }}
           >
@@ -410,20 +461,8 @@ export default function Home() {
                 marginBottom: "18px",
               }}
             >
-              <input
-                name="name"
-                type="text"
-                placeholder="Name"
-                required
-                style={inputStyle}
-              />
-              <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                required
-                style={inputStyle}
-              />
+              <input name="name" type="text" placeholder="Name" required style={inputStyle} />
+              <input name="email" type="email" placeholder="Email" required style={inputStyle} />
             </div>
 
             <textarea
@@ -556,12 +595,7 @@ export default function Home() {
                   textDecoration: "none",
                 }}
               >
-                <Image
-                  src={reel.thumbnail}
-                  alt={reel.alt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
+                <Image src={reel.thumbnail} alt={reel.alt} fill style={{ objectFit: "cover" }} />
 
                 <div
                   style={{
@@ -710,9 +744,34 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+
+        @keyframes floatDown {
+          0%,
+          100% {
+            transform: translateY(0);
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateY(8px);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </main>
   );
 }
+
+const navLinkStyle: CSSProperties = {
+  textDecoration: "none",
+  color: "#18313a",
+  letterSpacing: "0.1em",
+  fontSize: "13px",
+};
 
 const inputStyle: CSSProperties = {
   width: "100%",
