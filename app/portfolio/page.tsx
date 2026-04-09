@@ -5,7 +5,7 @@ const photos = [
   { src: "/images/portfolio/01_santorni_hotel.jpg", alt: "Portfolio image 1" },
   { src: "/images/portfolio/02_australian_coast.jpg", alt: "Portfolio image 2" },
   { src: "/images/portfolio/02_resort_pool.jpg", alt: "Portfolio image 3" },
-  { src: "/images/portfolio/03_ayia_napa_cliff.JPG", alt: "Portfolio image 4" },
+  { src: "/images/portfolio/03_ayia_napa_cliff.jpg", alt: "Portfolio image 4" },
   { src: "/images/portfolio/04_resort_bedroom.jpg", alt: "Portfolio image 5" },
   { src: "/images/portfolio/05_airbnb_bathroom.jpg", alt: "Portfolio image 6" },
   { src: "/images/portfolio/06_dining_room.jpg", alt: "Portfolio image 7" },
@@ -18,7 +18,7 @@ const photos = [
   { src: "/images/portfolio/13_airbnb_riverside.jpg", alt: "Portfolio image 14" },
   { src: "/images/portfolio/14_hotel_breakfast.jpg", alt: "Portfolio image 15" },
   { src: "/images/portfolio/15_lisbon_pink_street.jpg", alt: "Portfolio image 16" },
-  { src: "/images/portfolio/16_lifestyle_beach.JPG", alt: "Portfolio image 17" },
+  { src: "/images/portfolio/16_lifestyle_beach.jpg", alt: "Portfolio image 17" },
   { src: "/images/portfolio/17_beach_hike.jpg", alt: "Portfolio image 18" },
   { src: "/images/portfolio/18_whitsundays.jpg", alt: "Portfolio image 19" },
 ];
