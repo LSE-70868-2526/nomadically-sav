@@ -13,15 +13,14 @@ const photos = [
   { src: "/images/portfolio/08_red_beach_restaurant.jpg", alt: "Portfolio image 9" },
   { src: "/images/portfolio/09_red_beach_rocks.jpg", alt: "Portfolio image 10" },
   { src: "/images/portfolio/10_bali_resort_pool.jpg", alt: "Portfolio image 11" },
-  { src: "/images/portfolio/12_hotel_reflection_pool.jpg", alt: "Portfolio image 12" },
-  { src: "/images/portfolio/11_beach_chairs.jpg", alt: "Portfolio image 13" },
-  { src: "/images/portfolio/12_hotel_reflection_pool.jpg", alt: "Portfolio image 14" },
-  { src: "/images/portfolio/13_airbnb_riverside.jpg", alt: "Portfolio image 15" },
-  { src: "/images/portfolio/14_hotel_breakfast.jpg", alt: "Portfolio image 16" },
-  { src: "/images/portfolio/15_lisbon_pink_street.jpg", alt: "Portfolio image 17" },
-  { src: "/images/portfolio/16_lifestyle_beach.JPG", alt: "Portfolio image 18" },
-  { src: "/images/portfolio/17_beach_hike.jpg", alt: "Portfolio image 19" },
-  { src: "/images/portfolio/18_whitsundays.jpg", alt: "Portfolio image 20" },
+  { src: "/images/portfolio/11_beach_chairs.jpg", alt: "Portfolio image 12" },
+  { src: "/images/portfolio/12_hotel_reflection_pool.jpg", alt: "Portfolio image 13" },
+  { src: "/images/portfolio/13_airbnb_riverside.jpg", alt: "Portfolio image 14" },
+  { src: "/images/portfolio/14_hotel_breakfast.jpg", alt: "Portfolio image 15" },
+  { src: "/images/portfolio/15_lisbon_pink_street.jpg", alt: "Portfolio image 16" },
+  { src: "/images/portfolio/16_lifestyle_beach.JPG", alt: "Portfolio image 17" },
+  { src: "/images/portfolio/17_beach_hike.jpg", alt: "Portfolio image 18" },
+  { src: "/images/portfolio/18_whitsundays.jpg", alt: "Portfolio image 19" },
 ];
 
 export default function PortfolioPage() {
