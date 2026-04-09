@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, CSSProperties } from "react";
 
 const portfolioPhotos = [
   { src: "/images/portfolio/01_santorni_hotel.jpg", alt: "Santorini hotel" },
@@ -41,7 +41,17 @@ const reels = [
     thumbnail: "/images/reels/reel3.png",
     href: "https://www.instagram.com/reel/C4TZ2I0rGnv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     alt: "Instagram reel 3",
-  }
+  },
+  {
+    thumbnail: "/images/reels/reel4.png",
+    href: "https://www.instagram.com/p/DW34p0KiGAO/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    alt: "Instagram reel 4",
+  },
+  {
+    thumbnail: "/images/reels/reel5.png",
+    href: "https://www.instagram.com/p/DW348FkiEFX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    alt: "Instagram reel 5",
+  },
 ];
 
 export default function Home() {
@@ -215,16 +225,29 @@ export default function Home() {
 
           <h1
             style={{
-              fontSize: "clamp(44px, 7vw, 88px)",
-              lineHeight: .76,
+              fontSize: "clamp(28px, 5vw, 56px)",
+              lineHeight: 1.06,
               fontWeight: 400,
               letterSpacing: "-0.03em",
               maxWidth: "980px",
               margin: "0 0 22px 0",
             }}
           >
-            Elevated visual storytelling for boutique hotels, destinations, and travel brands.
+            Hi, I’m Savannah.
           </h1>
+
+          <p
+            style={{
+              fontSize: "12px",
+              lineHeight: 1.4,
+              fontStyle: "italic",
+              letterSpacing: "0.04em",
+              margin: "6px 0 0 2px",
+              opacity: 0.75,
+            }}
+          >
+            you can call me Sav
+          </p>
 
           <p
             style={{
@@ -235,7 +258,7 @@ export default function Home() {
               margin: 0,
             }}
           >
-            I’ve spent the past five years traveling across 5 continents and 30+ countries, 
+            I’ve spent the past five years traveling across 5 continents and 30+ countries,
             creating imagery that makes places feel aspirational, immersive, and real.
           </p>
         </div>
@@ -265,12 +288,7 @@ export default function Home() {
                 backgroundColor: "#e9efed",
               }}
             >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              <Image src={photo.src} alt={photo.alt} fill style={{ objectFit: "cover" }} />
             </div>
           ))}
         </div>
@@ -343,10 +361,12 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              I have 5 years of content creation experience in 30 countries. I have collaborated with large organizations such as Worldpackers and smaller hotels such as Harus Damai in Palua Nias, Indonesia. 
-              Most of my content is focused on coastal settings, boutique stays, thoughtful interiors, and the people that make a place feel like home, despite being so far from it. My goal is to create content that
-              not only looks beautiful, but also helps brands connect with the kind of traveler
-              they want to reach.
+              I have 5 years of content creation experience in 30 countries. I have collaborated
+              with large organizations such as Worldpackers and smaller hotels such as Harus Damai
+              in Palua Nias, Indonesia. Most of my content is focused on coastal settings, boutique
+              stays, thoughtful interiors, and the people that make a place feel like home, despite
+              being so far from it. My goal is to create content that not only looks beautiful, but
+              also helps brands connect with the kind of traveler they want to reach.
             </p>
           </div>
         </div>
@@ -483,8 +503,8 @@ export default function Home() {
                 margin: "0 0 28px 0",
               }}
             >
-              Available for collaborations, destination campaigns, and travel
-              content partnerships! 
+              Available for collaborations, destination campaigns, and travel content
+              partnerships!
             </p>
 
             <a
@@ -694,7 +714,7 @@ export default function Home() {
   );
 }
 
-const inputStyle: React.CSSProperties = {
+const inputStyle: CSSProperties = {
   width: "100%",
   padding: "22px 20px",
   fontSize: "16px",
