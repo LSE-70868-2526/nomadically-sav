@@ -33,25 +33,15 @@ const reels = [
     alt: "Instagram reel 1",
   },
   {
-    thumbnail: "/images/reels/reel1.png",
-    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    thumbnail: "/images/reels/reel2.png",
+    href: "https://www.instagram.com/reel/DNUnACDz46c/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     alt: "Instagram reel 2",
   },
   {
-    thumbnail: "/images/reels/reel1.png",
-    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
+    thumbnail: "/images/reels/reel3.png",
+    href: "https://www.instagram.com/reel/C4TZ2I0rGnv/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     alt: "Instagram reel 3",
-  },
-  {
-    thumbnail: "/images/reels/reel1.png",
-    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
-    alt: "Instagram reel 4",
-  },
-  {
-    thumbnail: "/images/reels/reel1.png",
-    href: "https://www.instagram.com/nomadicallysav/reel/DW37MKRiE6s/",
-    alt: "Instagram reel 5",
-  },
+  }
 ];
 
 export default function Home() {
@@ -226,7 +216,7 @@ export default function Home() {
           <h1
             style={{
               fontSize: "clamp(44px, 7vw, 88px)",
-              lineHeight: 1.06,
+              lineHeight: .76,
               fontWeight: 400,
               letterSpacing: "-0.03em",
               maxWidth: "980px",
@@ -245,8 +235,8 @@ export default function Home() {
               margin: 0,
             }}
           >
-            I create calm, polished imagery that helps hospitality and travel brands feel memorable,
-            aspirational, and genuinely lived in.
+            I’ve spent the past five years traveling across 5 continents and 30+ countries, 
+            creating imagery that makes places feel aspirational, immersive, and real.
           </p>
         </div>
       </section>
@@ -342,8 +332,7 @@ export default function Home() {
                 color: "#18313a",
               }}
             >
-              My work focuses on hotels, destinations, and travel experiences that want imagery to
-              feel elevated, calm, and genuine.
+              My content focuses on hotels, destinations, and genuine travel experiences
             </h2>
 
             <p
@@ -354,8 +343,8 @@ export default function Home() {
                 margin: 0,
               }}
             >
-              I’m drawn to coastal settings, boutique stays, thoughtful interiors, and the small
-              visual details that make a place feel memorable. My goal is to create content that
+              I have 5 years of content creation experience in 30 countries. I have collaborated with large organizations such as Worldpackers and smaller hotels such as Harus Damai in Palua Nias, Indonesia. 
+              Most of my content is focused on coastal settings, boutique stays, thoughtful interiors, and the people that make a place feel like home, despite being so far from it. My goal is to create content that
               not only looks beautiful, but also helps brands connect with the kind of traveler
               they want to reach.
             </p>
@@ -495,7 +484,7 @@ export default function Home() {
               }}
             >
               Available for collaborations, destination campaigns, and travel
-              content partnerships.
+              content partnerships! 
             </p>
 
             <a
